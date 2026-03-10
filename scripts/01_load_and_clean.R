@@ -46,7 +46,8 @@ head(qog)
 #   al_language2000 = linguistic fractionalization index
 #   al_religion2000 = religious fractionalization index
 #   wdi_gdpcapgr     = GDP per capita growth (World Development Indicators)
-#   pwt_hci        = average years of schooling (Barro-Lee)
+#   pwt_hci        = human capital index (Penn World Tables); constructed
+#                     using Barro-Lee schooling data (similar to Alesina et al.)
 #   wdi_pop         = total population (for log population control)
 #
 #                              #######
@@ -59,7 +60,10 @@ df <- qog |>
     al_religion2000,
     wdi_gdpcapgr,
     pwt_hci,
-    wdi_pop
+    wdi_pop,
+    wdi_mortinf,
+    vdem_corr,
+    ht_region
   )
 #
 #                    ## Taking a Look at Our Cleaned Data ##
@@ -110,3 +114,11 @@ df |>
 # The close correspondence, no less, confirms we are using the correct data.
 #
 ###############################################################################
+#
+#                  #### Create log population variable ####
+df <- df |>
+  mutate(log_pop = log(wdi_pop))
+
+# Save clean dataset for use in analysis script
+write.csv(df, "data/df_clean.csv", row.names = FALSE)
+
