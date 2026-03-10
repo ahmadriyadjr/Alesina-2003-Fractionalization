@@ -4,8 +4,8 @@
 # This is the FIRST file you will run re: the replication of Alesina et al. (2003)
 #
 # This specific script (1) loads the QoG dataset (.dta); (2) extracts the variables
-# needed for replication; (3) and verifies the fractionalization
-# indices against "Table 1" of the paper.
+# needed for replication; (3) verifies the fractionalization indices against
+# "Table 1" of the paper; and (4) saves a clean dataset for use in 02_analysis.R
 #
 ###############################################################################
 #
@@ -49,6 +49,9 @@ head(qog)
 #   pwt_hci        = human capital index (Penn World Tables); constructed
 #                     using Barro-Lee schooling data (similar to Alesina et al.)
 #   wdi_pop         = total population (for log population control)
+#   wdi_mortinf     = infant mortality rate (World Development Indicators)
+#   vdem_corr       = corruption index (V-Dem, 0-1 scale)
+#   ht_region       = regional classification (for dummy variables)
 #
 #                              #######
 #
