@@ -38,4 +38,4 @@ Replication results are saved in `output/replication_results.txt`.
 ## Citation
 Alesina, A., Devleeschauwer, A., Easterly, W., Kurlat, S., & Wacziarg, R. (2003). Fractionalization. *Journal of Economic Growth*, 8(2), 155–194.
 
-# Thank you for your time and consideration! :)
+
