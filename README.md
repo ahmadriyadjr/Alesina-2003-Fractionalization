@@ -1,15 +1,41 @@
-# Political-Economy-R
+# Replication: Alesina et al. (2003) "Fractionalization"
 
-This project is meant to serve as a sample-code to demonstrate quantitative and technical proficiency in R.  
+## Overview
+This project replicates selected results from Alesina, Devleeschauwer, Easterly, Kurlat, and Wacziarg (2003), "Fractionalization," *Journal of Economic Growth* 8(2): 155–194.
 
-  This is done by replicating core regression results from Alesina et al. (2003), "Fractionalization." This is a cornerstone paper in Political Economy. 
+The paper constructs ethnic, linguistic, and religious fractionalization indices for approximately 190 countries and examines their relationship with economic growth and governance outcomes. This replication focuses on:
 
-  Alesina et al.'s study examines the relationship between ethnic, linguistic, and religious fractionalization and economic outcomes across countries.
+1. Verifying the fractionalization indices against the paper's Table 1 summary statistics
+2. Replicating the governance regressions (Tables 12b and 12f) using modern cross-sectional data
 
-This quantitative replication focuses on: (1) Ethnic fractionalization; (2) GDP per capita growth; and (3) standard control variables.
+## Data
+This replication uses the **Quality of Government (QoG) Standard Cross-Section dataset (January 2026)**, available at:
+https://www.gu.se/en/quality-government/qog-data
 
-The methods employed in this replication using R Studio are Ordinary Least Squares (OLS) regression and Robust Standard Errors. 
+Download the Stata (.dta) format file and place it in the `data/` folder as `qog_std_cs_jan26.dta`.
 
-The replication's findings conclude a negative association between ethnic fractionalization and growth is replicated with similar magnitude and significance.
+**Note:** The raw data file is not included in this repository. The cleaned dataset (`data/df_clean.csv`) is provided for convenience.
 
-## Thank you
+## How to Run
+Run the scripts in order:
+
+1. `scripts/01_load_and_clean.R` — loads QoG data, selects variables, verifies fractionalization indices against Table 1, saves clean dataset
+2. `scripts/02_analysis.R` — runs OLS regressions with robust standard errors, exports results table
+
+Required packages: `tidyverse`, `haven`, `sandwich`, `lmtest`, `stargazer`
+
+## Results
+Replication results are saved in `output/replication_results.txt`.
+
+| Outcome | Paper Coefficient | Our Coefficient | Match? |
+|---|---|---|---|
+| GDP Per Capita Growth | -0.019 | +0.483 (n.s.) | No — see note |
+| Log Infant Mortality | +0.442*** | +0.804*** | Yes (sign + significance) |
+| Corruption (V-Dem) | +0.287*** | +0.257*** | Yes (sign, significance, magnitude) |
+
+**Note on GDP growth divergence:** The paper's growth regression uses decade-averaged panel data from 1960–1990 (Easterly & Levine 1997). Our single modern cross-section cannot replicate this structure. The governance results (infant mortality, corruption) use a simple cross-section and replicate cleanly.
+
+## Citation
+Alesina, A., Devleeschauwer, A., Easterly, W., Kurlat, S., & Wacziarg, R. (2003). Fractionalization. *Journal of Economic Growth*, 8(2), 155–194.
+
+# Thank you for your time and consideration! :)
