@@ -118,9 +118,14 @@ df |>
 #
 ###############################################################################
 #
-#                  #### Create log population variable ####
+#                  #### Create needed variable ####
 df <- df |>
-  mutate(log_pop = log(wdi_pop))
+  mutate(
+    log_pop = log(wdi_pop),
+    log_mortinf = log(wdi_mortinf),
+    ssafrica = as.integer(ht_region == 4),
+    latam = as.integer(ht_region == 2)
+         )
 
 # Save clean dataset for use in analysis script
 write.csv(df, "data/df_clean.csv", row.names = FALSE)
