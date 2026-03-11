@@ -35,6 +35,19 @@ Replication results are saved in `output/replication_results.txt`.
 
 **Note on GDP growth divergence:** The paper's growth regression uses decade-averaged panel data from 1960–1990 (Easterly & Levine 1997). Our single modern cross-section cannot replicate this structure. The governance results (infant mortality, corruption) use a simple cross-section and replicate cleanly.
 
+## Visualizations
+
+Three plots are saved to the `output/` folder:
+
+- **plot1_corruption.png** — Scatter plot of ethnic fractionalization vs. corruption (V-Dem), colored by region
+- **plot2_mortality.png** — Scatter plot of ethnic fractionalization vs. log infant mortality, colored by region  
+- **plot3_coefplot.png** — Coefficient plot comparing regression estimates across both outcomes with 95% confidence intervals
+
+## Robustness Checks
+
+Results are replicated using linguistic and religious fractionalization as alternative measures. Ethnic and language fractionalization consistently predict worse health and governance outcomes. 
+Religion fractionalization does not predict infant mortality and predicts lower corruption, suggesting religious diversity operates through different channels than ethnic or linguistic diversity. Full results are in `output/robustness_checks.txt`.
+
 ## Citation
 Alesina, A., Devleeschauwer, A., Easterly, W., Kurlat, S., & Wacziarg, R. (2003). Fractionalization. *Journal of Economic Growth*, 8(2), 155–194.
 
