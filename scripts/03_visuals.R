@@ -157,3 +157,25 @@ plot3 <- ggplot(coef_df, aes(x = estimate, y = term, color = model)) +
   theme_minimal()
 
 ggsave("output/plot3_coefplot.png", plot3, width = 9, height = 5, dpi = 300)
+
+                   #### Extra Robustness Checks ####
+                    # Language Fractionalization #
+reg2_lang <- lm(log_mortinf ~ al_language2000 + log_pop + ssafrica + latam, data = df)
+reg3_lang <- lm(vdem_corr   ~ al_language2000 + log_pop + ssafrica + latam, data = df)
+                    # Religion fractionalization #
+reg2_relig <- lm(log_mortinf ~ al_religion2000 + log_pop + ssafrica + latam, data = df)
+reg3_relig <- lm(vdem_corr   ~ al_religion2000 + log_pop + ssafrica + latam, data = df)
+                          # Robust SEs #
+coeftest(reg2_lang,  vcov = vcovHC(reg2_lang,  type = "HC1"))
+coeftest(reg3_lang,  vcov = vcovHC(reg3_lang,  type = "HC1"))
+coeftest(reg2_relig, vcov = vcovHC(reg2_relig, type = "HC1"))
+coeftest(reg3_relig, vcov = vcovHC(reg3_relig, type = "HC1"))
+                      # Export Combined Table #
+stargazer(reg2, reg3, reg2_lang, reg3_lang, reg2_relig, reg3_relig,
+          type = "text",
+          title = "Robustness Checks: Ethnic, Language, and Religion Fractionalization",
+          column.labels = c("Ethnic", "Ethnic", "Language", "Language", "Religion", "Religion"),
+          dep.var.labels = c("Log Infant Mortality", "Corruption", 
+                             "Log Infant Mortality", "Corruption",
+                             "Log Infant Mortality", "Corruption"),
+          out = "output/robustness_checks.txt")

@@ -143,13 +143,18 @@ coeftest(reg3, vcov = vcovHC(reg3, type = "HC1"))
 # Note: V-Dem corruption index used in place of the paper's
 #       Political Risk Services measure (no longer freely available).
 ################################################################################
+                 ## Save Regressions for reference ##
+saveRDS(reg2, "data/reg2.rds")
+saveRDS(reg3, "data/reg3.rds")
+
+###############################################################################
 #
 #             #### Time for Exporting Regression Tables ####
 #
-#   stargazer formats regression output into a publication-style table.
-#            type = "text" saves a plain text file readable without LaTeX.
-#            Each column in the table corresponds to one regression.
-#              (However, I have 3+ years of experience in LaTeX)
+# stargazer formats regression output into a publication-style table.
+#      type = "text" since saves it a plain text file readable without LaTeX.
+#      Each column in the table corresponds to one regression.
+#          (However, I have 3+ years of experience in LaTeX)
 #
 ################################################################################
 #
